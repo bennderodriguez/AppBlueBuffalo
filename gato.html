@@ -27,135 +27,7 @@
         <!-- JQuery Export datatable csv,excel pdf -->
         <link rel="stylesheet" href="asset/css/jquery.dataTables.min.css">
         <link rel="stylesheet" href="asset/css/buttons.dataTables.min.css">
-        <style>
-            * {
-                box-sizing: border-box;
-            }
-
-            body {
-                background: #fff0cb;
-            }
-
-            #regForm {
-                font-family: Raleway;
-                background-color: rgb(4, 43, 78) !important;
-                margin: 3em auto;
-                padding: 40px;
-                /* width: 70%; */
-                min-width: 300px;
-                min-height: 600px;
-                color: #fff0cb;
-            }
-
-            h1 {
-                text-align: center;  
-            }
-
-            input {
-                padding: 10px;
-                width: 100%;
-                font-size: 17px;
-                font-family: Raleway;
-                border: 1px solid #aaaaaa;
-            }
-
-            /* Mark input boxes that gets an error on validation: */
-            input.invalid {
-                background-color: #ffdddd !important;
-            }
-            select.invalid {
-                background-color: #ffdddd !important;
-            }
-            radio.invalid {
-                background-color: #ffdddd !important;
-            }
-
-            /* Hide all steps by default: */
-            .tab {
-                display: none;
-            }
-
-            button {
-                background-color: #fff0cb;
-                color: #042b4e;
-                border: none;
-                padding: 10px 20px;
-                font-size: 17px;
-                font-family: Raleway;
-                cursor: pointer;
-            }
-
-            button:hover {
-                opacity: 0.8;
-            }
-
-            #prevBtn {
-                background-color: #bbbbbb;
-            }
-
-            /* Make circles that indicate the steps of the form: */
-            .step {
-                height: 15px;
-                width: 15px;
-                margin: 0 2px;
-                background-color: #bbbbbb;
-                border: none;  
-                border-radius: 50%;
-                display: inline-block;
-                opacity: 0.5;
-            }
-
-            .step.active {
-                opacity: 1;
-            }
-
-            /* Mark the steps that are finished and valid: */
-            .step.finish {
-                background-color: #0086ff;
-            }
-
-            select {
-                padding: 10px;
-                width: 100%;
-                font-size: 17px;
-                font-family: Raleway;
-                border: 1px solid #aaaaaa;
-            }
-            .center {
-                margin: auto;
-                width: 60%;
-                padding: 10px;
-            }
-
-            table {
-                border-collapse: collapse;
-                border-spacing: 0;
-                width: 100%;
-                border: 1px solid #ddd;
-            }
-
-            th, td {
-                text-align: left;
-                padding: 8px;
-            }
-
-            tr:nth-child(even){background-color: #f2f2f2}
-            #logo{
-                background-color: rgb(255, 240, 203) !important;
-            }
-
-            label > input{ /* HIDE RADIO */
-                visibility: hidden; /* Makes input not-clickable */
-                position: absolute; /* Remove input from document flow */
-            }
-            label > input + img{ /* IMAGE STYLES */
-                cursor:pointer;
-                border:2px solid transparent;
-            }
-            label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
-                border:2px solid #f00;
-            }
-        </style>
+        <link rel="stylesheet" href="asset/css/mascota.css">
     </head>
     <body>
         <div class="center" id="logo">
@@ -169,12 +41,12 @@
                 <div class="tab">
                     <h5>Nombre de la mascota</h5>
                     <p><input oninput="this.className = ''" name="nombre_mascota" id="nombre_mascota"></p>
-                    <h5>¿Dónde se realiza tu encuesta?</h5>
+                    <!--h5>¿Dónde se realiza tu encuesta?</h5>
                     <select oninput="this.className = ''" name="lugar" id="lugar" required>
                         <option value="+Kota">+Kota</option>
                         <option value="Petco">Petco</option>
                         <option value="Parque">Parque</option>
-                    </select>
+                    </select-->
                     <h5>Tamaño de la mascota</h5>
                     <select oninput="this.className = ''" name="tamano" id="tamano" required>
                         <option value="Chica">Chica</option>
@@ -201,8 +73,24 @@
                     <h5>Email</h5>
                     <p><input placeholder="E-mail..." oninput="this.className = ''" name="email" id="email"></p>
 
+                    <h5>Cord</h5>
+                    <p id="demo"></p>
+                    <div id="cords"></div>
+
                 </div>
                 <div class="tab">
+                    <div class="row">
+                        <div class="col"><label><input oninput="this.className = ''" type="radio" name="marca" id="marca" value="Whiskas" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBWhiskas.JPG"></label></div>
+                        <div class="col"><label><input oninput="this.className = ''" type="radio" name="marca" id="marca" value="CatChow" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBCatChow.JPG"></label></div>
+                        <div class="col"><label><input oninput="this.className = ''" type="radio" name="marca" id="marca" value="Proplan" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBProplan.JPG"></label></div>
+                    </div>
+                    <div class="row">
+                        <div class="col"><label><input oninput="this.className = ''" type="radio" name="marca" id="marca" value="Royal Canin" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBRoyal Canin.JPG"></label></div>
+                        <div class="col"><label><input oninput="this.className = ''" type="radio" name="marca" id="marca" value="Hill's" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBHill's.JPG"></label></div>
+                        <div class="col"><label><input oninput="this.className = ''" type="radio" name="marca" id="marca" value="Nupec" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBNupec.JPG"></label></div>
+                    </div>
+                </div>
+                <!--div class="tab">
                     <h5>De las siguientes marcas ¿Con cuál alimentas a tu Gato?</h5>                      
                     <p>
                         <select onchange="showmarca(this);" oninput="this.className = ''" name="marca" id="marca" required>
@@ -215,10 +103,14 @@
                             <option value="Nupec">Nupec</option>
                         </select>
                     </p>
-                </div>
+                </div-->
                 <div class="tab">
                     <h5>De las siguientes listas de ingredientes ¿Cuál le darías a tu Gato?</h5>  
                     <div id="elige" class="row"></div>
+                </div>
+                <div class="tab">
+                    <h5>Usted eligió</h5> 
+                    <div id="show_food_final"></div>
                 </div>
                 <div style="overflow:auto;">
                     <div style="float:right;">
@@ -234,10 +126,36 @@
                     <span class="step"></span>
                     <span class="step"></span>
                     <span class="step"></span>
+                    <span class="step"></span>
                 </div>
             </form>
         </div>
         <div id="result"></div>
+        <!-- Modal terminos y condiciones -->
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h2 class="modal-title text-primary">Aviso De Privacidad</h2>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        Al dar clic al siguiente botón acepta los términos establecidos por el poveedor. Para más información <a href="https://docs.wixstatic.com/ugd/1e7822_8bbd9da872b144ec89799a220dba2ef1.pdf" target="_blank" class="btn btn-link">aviso</a> de privacidad.
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Acepto Términos de Privacidad</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -364,13 +282,51 @@
                                 marca = p.value;
                                 if (marca) {
                                     console.log(marca);
-                                    var txt1 = '<div class="col"><label><input oninput="this.className = ' + "'" + "'" + '" type="radio" name="clienteSelecciono" id="clienteSelecciono" value="' + marca + '" /><img class="img-fluid" src="asset/img/gato/' + marca + '.JPG"></label></div>';              // Create text with HTML
-                                    var txt2 = '<div class="col"><label><input oninput="this.className = ' + "'" + "'" + '" type="radio" name="clienteSelecciono" id="clienteSelecciono" value="BlueBufalo" checked/><img class="img-fluid" src="asset/img/gato/bluecat.png"></label></div>';  // Create text with jQuery
-                                    $("#elige").append(txt1, txt2);     // Append new elements
+                                    var txt1 = '<div class="col"><label><input oninput="this.className = ' + "'" + "'" + '" type="radio" name="clienteSelecciono" id="clienteSelecciono" value="' + marca + '" onclick="show_food_final(this);"/><img class="img-fluid" src="asset/img/gato/' + marca + '.JPG"></label></div>';              // Create text with HTML
+                                    var txt2 = '<div class="col"><label><input oninput="this.className = ' + "'" + "'" + '" type="radio" name="clienteSelecciono" id="clienteSelecciono" value="BlueBufalo" onclick="show_food_final(this);"/><img class="img-fluid" src="asset/img/gato/bluecat.png"></label></div>';  // Create text with jQuery
+                                    var txt3 = '<input type="hidden" name="mascotacome" id="mascotacome" value="' + marca + '">';
+                                    $("#elige").append(txt1, txt2, txt3);     // Append new elements
                                     //damos next automaticamente
                                     nextPrev(1);
                                 }
                             }
+
+                            function show_food_final(p) {
+                                food = p.value;
+                                if (food) {
+                                    console.log(food);
+                                    var txt1 = '<img class="img-fluid" src="asset/img/gato/R' + food + '.JPG">';// Create text with HTML
+                                    var txt2 = '<input type="hidden" name="eligenuevo" id="eligenuevo" value="' + food + '">';
+                                    $("#show_food_final").append(txt1, txt2);     // Append new elements
+                                    nextPrev(1);
+                                }
+                            }
+        </script>
+        <script src="js/jquery3.3.1.min.js"></script>
+        <script src="js/bootstrap4.0.0.min.js"></script>
+        <script>
+                            var x = document.getElementById("demo");
+                            getLocation();
+                            function getLocation() {
+                                if (navigator.geolocation) {
+                                    navigator.geolocation.getCurrentPosition(showPosition);
+                                } else {
+                                    x.innerHTML = "Geolocation is not supported by this browser.";
+                                }
+                            }
+
+                            function showPosition(position) {
+                                x.innerHTML = "Latitude: " + position.coords.latitude +
+                                        "<br>Longitude: " + position.coords.longitude;
+
+                                $("#cords").append('<input type="hidden" value="' + position.coords.latitude + '" id="lat" name="lat"><input type="hidden" value="' + position.coords.longitude + '" id="lon" name="lon">');
+
+                            }
+        </script>
+        <!--END Modal terminos y condiciones -->
+        <script>
+            //open modal Terminos y condiciones to load page
+            $('#myModal').modal('show');
         </script>
     </body>
 </html>

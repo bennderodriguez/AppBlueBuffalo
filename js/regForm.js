@@ -13,26 +13,52 @@ $("#regForm").validator().on("submit", function (event) {
 
 function submitForm() {
     console.log("llege perro");
-    
+
     // Initiate Variables With Form Content
+    var Encuestador = localStorage.getItem("nombre_enc");
     var Mascota = $("#Mascota").val();
     var nombre_mascota = $("#nombre_mascota").val();
-    var lugar = $("#lugar").val();
+    //var lugar = $("#lugar").val();
     var tamano = $("#tamano").val();
     var edad_numero = $("#edad_numero").val();
     var edad_mm_yy = $("#edad_mm_yy").val();
     var nombre_padre = $("#nombre_padre").val();
     var email = $("#email").val();
-    var marca = $("#marca").val();
-    var clienteSelecciono = $("#clienteSelecciono").val();
-    var d = new Date();
+    var mascotacome = $("#mascotacome").val();
+    var eligenuevo = $("#eligenuevo").val();
+    var lat = $("#lat").val();
+    var lon = $("#lon").val();
+    var d = new Date();  
+    
+    console.log("Mascota "+Mascota);
+    console.log("nombre_mascota "+ nombre_mascota);
+    //console.log(lugar);
+    console.log("tamano "+tamano);
+    console.log("edad_numero "+edad_numero);
+    console.log("edad_mm_yy "+edad_mm_yy);
+    console.log("nombre_padre " + nombre_padre);
+    console.log("email " + email);
+    console.log("mascotacome " + mascotacome);
+    console.log("clienteSelecciono " + eligenuevo);
     console.log(d.toLocaleString("en-US"));
-    console.log(Mascota);
-    console.log(nombre_mascota);
-    console.log(lugar);
-    console.log(tamano);
 
-    var text = '[{"nombre_mascota":"' + nombre_mascota + '","lugar":"' + lugar + '","tamano":"' + tamano + '","Hora":"' + d.toLocaleString("en-US") + '"}]';
+    var text = '{'+
+                '"data": [{'+
+                '"Encuestador": "'+Encuestador+'",'+
+                '"Mascota": "'+Mascota+'",'+
+                '"nombre_mascota": "'+nombre_mascota+'",'+
+                '"tamano": "'+tamano+'",'+
+                '"edad_numero": "'+edad_numero+'",'+
+                '"edad_mm_yy": "'+edad_mm_yy+'",'+
+                '"nombre_padre": "'+nombre_padre+'",'+
+                '"email": "'+email+'",'+
+                '"lat": "'+lat+'",'+
+                '"lon": "'+lon+'",'+
+                '"marca": "'+mascotacome+'",'+
+                '"clienteSelecciono": "'+eligenuevo+'",'+
+                '"date": "'+d.toLocaleString("en-US")+'"'+
+                '}]}';
+        
     clickCounter(text);
 // creas el fichero con la API File
     var file = new File([text], "encusta.json", {type: "text/plain;charset=utf-8"});
@@ -74,14 +100,16 @@ function submitForm() {
      }
      }
      });*/
-    
+
     formSuccess();
 }
 
 function formSuccess() {
     $("#regForm")[0].reset();
     submitMSG(true, "Respuestas Enviadas!")
-   // $(location).attr('href', 'pr1.html')
+    // $(location).attr('href', 'pr1.html').remove();
+    $("#divsubmit").prepend('<a href="index.html"><button type="button" class="btn-block">Tomar nueva encuesta</button></a>');
+    $("#form-submit").remove();
 }
 
 function formError() {
@@ -100,9 +128,9 @@ function submitMSG(valid, msg) {
 }
 
 function clickCounter(text) {
-    if(typeof(Storage) !== "undefined") {
+    if (typeof (Storage) !== "undefined") {
         if (localStorage.clickcount) {
-            localStorage.clickcount = Number(localStorage.clickcount)+1;
+            localStorage.clickcount = Number(localStorage.clickcount) + 1;
         } else {
             localStorage.clickcount = 1;
         }
