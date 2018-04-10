@@ -28,38 +28,48 @@ function submitForm() {
     var eligenuevo = $("#eligenuevo").val();
     var lat = $("#lat").val();
     var lon = $("#lon").val();
-    var d = new Date();  
-    
-    console.log("Mascota "+Mascota);
-    console.log("nombre_mascota "+ nombre_mascota);
+    var d = new Date();
+
+    console.log("Mascota " + Mascota);
+    console.log("nombre_mascota " + nombre_mascota);
     //console.log(lugar);
-    console.log("tamano "+tamano);
-    console.log("edad_numero "+edad_numero);
-    console.log("edad_mm_yy "+edad_mm_yy);
+    console.log("tamano " + tamano);
+    console.log("edad_numero " + edad_numero);
+    console.log("edad_mm_yy " + edad_mm_yy);
     console.log("nombre_padre " + nombre_padre);
     console.log("email " + email);
     console.log("mascotacome " + mascotacome);
     console.log("clienteSelecciono " + eligenuevo);
     console.log(d.toLocaleString("en-US"));
-
-    var text = '{'+
-                '"data": [{'+
-                '"Encuestador": "'+Encuestador+'",'+
-                '"Mascota": "'+Mascota+'",'+
-                '"nombre_mascota": "'+nombre_mascota+'",'+
-                '"tamano": "'+tamano+'",'+
-                '"edad_numero": "'+edad_numero+'",'+
-                '"edad_mm_yy": "'+edad_mm_yy+'",'+
-                '"nombre_padre": "'+nombre_padre+'",'+
-                '"email": "'+email+'",'+
-                '"lat": "'+lat+'",'+
-                '"lon": "'+lon+'",'+
-                '"marca": "'+mascotacome+'",'+
-                '"clienteSelecciono": "'+eligenuevo+'",'+
-                '"date": "'+d.toLocaleString("en-US")+'"'+
-                '}]}';
-        
+    
+    //cracion del registro actual en JSON
+    var text = '{' +
+            '"Encuestador": "' + Encuestador + '",' +
+            '"Mascota": "' + Mascota + '",' +
+            '"nombre_mascota": "' + nombre_mascota + '",' +
+            '"tamano": "' + tamano + '",' +
+            '"edad_numero": "' + edad_numero + '",' +
+            '"edad_mm_yy": "' + edad_mm_yy + '",' +
+            '"nombre_padre": "' + nombre_padre + '",' +
+            '"email": "' + email + '",' +
+            '"lat": "' + lat + '",' +
+            '"lon": "' + lon + '",' +
+            '"marca": "' + mascotacome + '",' +
+            '"clienteSelecciono": "' + eligenuevo + '",' +
+            '"date": "' + d.toLocaleString("en-US") + '"' +
+            '},';
+    
+    //funcion que cueta el numero de encuestas realizadas
     clickCounter(text);
+    //funcion que guarda el las respuestas JSON
+    save_json_results(text);
+    /*
+     * 
+     * seccion para descargar las respuestas en txt no sirve en apps
+     * browser si
+     */
+    /*
+   
 // creas el fichero con la API File
     var file = new File([text], "encusta.json", {type: "text/plain;charset=utf-8"});
 
@@ -75,7 +85,7 @@ function submitForm() {
     a.innerHTML = "Descargar fichero";
     a.download = file.name;
 
-    console.log(file);
+    console.log(file);*/
 
 //    // Check browser support
 //    if (typeof (Storage) !== "undefined") {
@@ -106,7 +116,7 @@ function submitForm() {
 
 function formSuccess() {
     $("#regForm")[0].reset();
-    submitMSG(true, "Respuestas Enviadas!")
+    submitMSG(true, "Gracias!")
     // $(location).attr('href', 'pr1.html').remove();
     $("#divsubmit").prepend('<a href="index.html"><button type="button" class="btn-block">Tomar nueva encuesta</button></a>');
     $("#form-submit").remove();
@@ -134,11 +144,28 @@ function clickCounter(text) {
         } else {
             localStorage.clickcount = 1;
         }
-        document.getElementById("result").innerHTML = "Numero de encuestados: " + localStorage.clickcount;
+        document.getElementById("result").innerHTML = "<h4>Numero de encuestados: <h4>" + localStorage.clickcount;
         console.log("Numero de encuestas Totales: " + localStorage.clickcount);
         localStorage.setItem("Respuestas", text);
         console.log(localStorage.getItem("Respuestas"));
     } else {
         document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+    }
+}
+
+/**
+ * Guarda json de respuesta de la encuesta en local storage
+ * @param {Json} text
+ * @returns {none}
+ */
+function save_json_results(text) {
+    // Check browser support
+    if (typeof (Storage) !== "undefined") {
+        //cadena acumula las respuestas y las encola 
+        var cadena = localStorage.getItem("json");
+        // Store acumulado + respuestas nuevas
+        localStorage.setItem("json", cadena + text);
+    } else {
+        document.getElementById("result").innerHTML = "Sorry, your Android does not support local Storage...";
     }
 }

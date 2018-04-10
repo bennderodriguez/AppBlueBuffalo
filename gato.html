@@ -71,7 +71,7 @@
                     <p><input type="text" maxlength="60" placeholder="" oninput="this.className = ''" name="nombre_padre" id="nombre_padre"></p>
 
                     <h5>Email</h5>
-                    <p><input placeholder="E-mail..." oninput="this.className = ''" name="email" id="email"></p>
+                    <p><textarea  class="form-control" rows="1" placeholder="E-mail..."  name="email" id="email"></textarea></p>
 
                     <h5>Cord</h5>
                     <p id="demo"></p>
@@ -79,17 +79,30 @@
 
                 </div>
                 <div class="tab">
-                    <div class="row">
-                        <div class="col"><label><input oninput="this.className = ''" type="radio" name="marca" id="marca" value="Whiskas" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBWhiskas.JPG"></label></div>
-                        <div class="col"><label><input oninput="this.className = ''" type="radio" name="marca" id="marca" value="CatChow" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBCatChow.JPG"></label></div>
-                        <div class="col"><label><input oninput="this.className = ''" type="radio" name="marca" id="marca" value="Proplan" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBProplan.JPG"></label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col"><label><input oninput="this.className = ''" type="radio" name="marca" id="marca" value="Royal Canin" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBRoyal Canin.JPG"></label></div>
-                        <div class="col"><label><input oninput="this.className = ''" type="radio" name="marca" id="marca" value="Hill's" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBHill's.JPG"></label></div>
-                        <div class="col"><label><input oninput="this.className = ''" type="radio" name="marca" id="marca" value="Nupec" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBNupec.JPG"></label></div>
-                    </div>
+                    <h5>De las siguientes marcas ¿Con cuál alimentas a tu Gato?</h5>   
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary" name="marca" id="marca" value="Whiskas" onclick="showmarca(this);">Whiskas</button> 
+                        <button type="button" class="btn btn-secondary" name="marca" id="marca" value="Cat Chow" onclick="showmarca(this);">Cat Chow</button> 
+                        <button type="button" class="btn btn-primary" name="marca" id="marca" value="Proplan" onclick="showmarca(this);">Proplan</button> 
+                    </div><br> <br> 
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary" name="marca" id="marca" value="Royal Canin" onclick="showmarca(this);">Royal Canin</button> 
+                        <button type="button" class="btn btn-secondary" name="marca" id="marca" value="Hill's" onclick="showmarca(this);">Hill's</button> 
+                        <button type="button" class="btn btn-primary" name="marca" id="marca" value="Nupec" onclick="showmarca(this);">Nupec</button> 
+                    </div><br> <br> 
                 </div>
+                <!--div class="tab">
+                    <div class="row">
+                        <div class="col"><label><input type="radio" name="marca" id="marca" value="Whiskas" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBWhiskas.JPG"></label></div>
+                        <div class="col"><label><input type="radio" name="marca" id="marca" value="CatChow" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBCatChow.JPG"></label></div>
+                        <div class="col"><label><input type="radio" name="marca" id="marca" value="Proplan" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBProplan.JPG"></label></div>
+                    </div>
+                    <div class="row">
+                        <div class="col"><label><input type="radio" name="marca" id="marca" value="Royal Canin" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBRoyal Canin.JPG"></label></div>
+                        <div class="col"><label><input type="radio" name="marca" id="marca" value="Hill's" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBHill's.JPG"></label></div>
+                        <div class="col"><label><input type="radio" name="marca" id="marca" value="Nupec" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBNupec.JPG"></label></div>
+                    </div>
+                </div-->
                 <!--div class="tab">
                     <h5>De las siguientes marcas ¿Con cuál alimentas a tu Gato?</h5>                      
                     <p>
@@ -283,24 +296,153 @@
                                 if (marca) {
                                     console.log(marca);
                                     var txt1 = '<div class="col"><label><input oninput="this.className = ' + "'" + "'" + '" type="radio" name="clienteSelecciono" id="clienteSelecciono" value="' + marca + '" onclick="show_food_final(this);"/><img class="img-fluid" src="asset/img/gato/' + marca + '.JPG"></label></div>';              // Create text with HTML
-                                    var txt2 = '<div class="col"><label><input oninput="this.className = ' + "'" + "'" + '" type="radio" name="clienteSelecciono" id="clienteSelecciono" value="BlueBufalo" onclick="show_food_final(this);"/><img class="img-fluid" src="asset/img/gato/bluecat.png"></label></div>';  // Create text with jQuery
+                                    var txt2 = '<div class="col"><label><input oninput="this.className = ' + "'" + "'" + '" type="radio" name="clienteSelecciono" id="clienteSelecciono" value="Blue Buffalo" onclick="show_food_final(this);"/><img class="img-fluid" src="asset/img/gato/bluecat.png"></label></div>';  // Create text with jQuery
                                     var txt3 = '<input type="hidden" name="mascotacome" id="mascotacome" value="' + marca + '">';
                                     $("#elige").append(txt1, txt2, txt3);     // Append new elements
                                     //damos next automaticamente
                                     nextPrev(1);
                                 }
                             }
-
                             function show_food_final(p) {
                                 food = p.value;
-                                if (food) {
-                                    console.log(food);
-                                    var txt1 = '<img class="img-fluid" src="asset/img/gato/R' + food + '.JPG">';// Create text with HTML
-                                    var txt2 = '<input type="hidden" name="eligenuevo" id="eligenuevo" value="' + food + '">';
-                                    $("#show_food_final").append(txt1, txt2);     // Append new elements
-                                    nextPrev(1);
+                                switch (food) {
+                                    case "Whiskas":
+                                        var card = '<div class="card">' +
+                                                '<div class="card-header text-center"><h3 class="text-center">' + food + '</h3></div>' +
+                                                '<div class="card-body">' +
+                                                '<p>*' + food + ' Pollo y Leche Adulto</p>' +
+                                                '<p>Primeros 5 Ingredientes</p>' +
+                                                '<ol>' +
+                                                '<li value="1">Cereales y/o sus derivados </li>' +
+                                                '<li>Harina de carne y/o subproductos (menudencias) de pollo y/o puerco y/o res y/o pescado y/o pastas oleaginosas</li>' +
+                                                '<li>Grasa de pollo y/o puerco y/o res (conservada con BHA/BHT)</li>' +
+                                                '<li>Sabores naturales y/o artificiales</li>' +
+                                                '<li>Sal yodatada</li>' +
+                                                '</ol>' +
+                                                '<input type="hidden" name="eligenuevo" id="eligenuevo" value="' + food + '">' +
+                                                '</div></div>';
+                                        $("#show_food_final").append(card);     // Append new elements                        
+                                        break;
+                                    case "Cat Chow":
+                                        var card = '<div class="card">' +
+                                                '<div class="card-header text-center"><h3 class="text-center">' + food + '</h3></div>' +
+                                                '<div class="card-body">' +
+                                                '<p>*' + food + ' Adultos Pescado</p>' +
+                                                '<p>Primeros 5 Ingredientes</p>' +
+                                                '<ol>' +
+                                                '<li value="1">Maíz amarillo </li>' +
+                                                '<li>Gluten de maíz</li>' +
+                                                '<li>Pasta de soya</li>' +
+                                                '<li>Derivado de harina pollo y/o harina de carne y hueso de res y/o cerdo</li>' +
+                                                '<li>Grasa animal (res y/o pollo y/o cerdo) estabilizada con antioxidantes (BHA & BHT y/o TBHQ y/o tocoferoles)</li>' +
+                                                '</ol>' +
+                                                '<input type="hidden" name="eligenuevo" id="eligenuevo" value="' + food + '">' +
+                                                '</div></div>';
+                                        $("#show_food_final").append(card);     // Append new elements                        
+                                        break;
+                                    case "Proplan":
+                                        var card = '<div class="card">' +
+                                                '<div class="card-header text-center"><h3 class="text-center">' + food + '</h3></div>' +
+                                                '<div class="card-body">' +
+                                                '<p>*' + food + ' Adult Optiprebio</p>' +
+                                                '<p>Primeros 5 Ingredientes</p>' +
+                                                '<ol>' +
+                                                '<li value="1">Carne de pollo </li>' +
+                                                '<li>Arroz</li>' +
+                                                '<li>Derivado de harina de pollo</li>' +
+                                                '<li>Gluten de maíz</li>' +
+                                                '<li>Maíz amarillo</li>' +
+                                                '</ol>' +
+                                                '<input type="hidden" name="eligenuevo" id="eligenuevo" value="' + food + '">' +
+                                                '</div></div>';
+                                        $("#show_food_final").append(card);     // Append new elements                        
+                                        break;
+                                    case "Royal Canin":
+                                        var card = '<div class="card">' +
+                                                '<div class="card-header text-center"><h3 class="text-center">' + food + '</h3></div>' +
+                                                '<div class="card-body">' +
+                                                '<p>*' + food + ' Adult Fit 32</p>' +
+                                                '<p>Primeros 5 Ingredientes</p>' +
+                                                '<ol>' +
+                                                '<li value="1">Harina de pollo </li>' +
+                                                '<li>Arroz integral</li>' +
+                                                '<li>Maíz</li>' +
+                                                '<li>Harina de gluten de maíz</li>' +
+                                                '<li>Grasa de pollo</li>' +
+                                                '</ol>' +
+                                                '<input type="hidden" name="eligenuevo" id="eligenuevo" value="' + food + '">' +
+                                                '</div></div>';
+                                        $("#show_food_final").append(card);     // Append new elements                        
+                                        break;
+                                    case "Hill's":
+                                        var card = '<div class="card">' +
+                                                '<div class="card-header text-center"><h3 class="text-center">' + food + '</h3></div>' +
+                                                '<div class="card-body">' +
+                                                '<p>*' + food + ' Optimal Care Adult</p>' +
+                                                '<p>Primeros 5 Ingredientes</p>' +
+                                                '<ol>' +
+                                                '<li value="1">Carne de Pollo </li>' +
+                                                '<li>Trigo Entero</li>' +
+                                                '<li>Harina De Gluten De Maíz</li>' +
+                                                '<li>Grasa De Cerdo (Conservada Con Tocoferoles Mixtos Y Ácido Cítrico)</li>' +
+                                                '<li>Arroz De Cervecería</li>' +
+                                                '</ol>' +
+                                                '<input type="hidden" name="eligenuevo" id="eligenuevo" value="' + food + '">' +
+                                                '</div></div>';
+                                        $("#show_food_final").append(card);     // Append new elements                        
+                                        break;
+                                    case "Nupec":
+                                        var card = '<div class="card">' +
+                                                '<div class="card-header text-center"><h3 class="text-center">' + food + '</h3></div>' +
+                                                '<div class="card-body">' +
+                                                '<p>*' + food + ' Matisse</p>' +
+                                                '<p>Primeros 5 Ingredientes</p>' +
+                                                '<ol>' +
+                                                '<li value="1">Harina de carne de pollo </li>' +
+                                                '<li>Arroz cervecero</li>' +
+                                                '<li>Grasa de pollo</li>' +
+                                                '<li>Maíz</li>' +
+                                                '<li>Pulpa de remolacha</li>' +
+                                                '</ol>' +
+                                                '<input type="hidden" name="eligenuevo" id="eligenuevo" value="' + food + '">' +
+                                                '</div></div>';
+                                        $("#show_food_final").append(card);     // Append new elements                        
+                                        break;
+                                    case "Blue Buffalo":
+                                        var card = '<div class="card">' +
+                                                '<div class="card-header text-center"><h3 class="text-center">' + food + '</h3></div>' +
+                                                '<div class="card-body">' +
+                                                '<p>Receta de Pollo Y Arroz Integral</p>' +
+                                                '<p>Primeros 5 Ingredientes</p>' +
+                                                '<ol>' +
+                                                '<li value="1">Pollo deshuesado </li>' +
+                                                '<li>Harina de carne de pollo</li>' +
+                                                '<li>Harina de pescado Menhaden (fuente de ácidos grasos Omega 3)</li>' +
+                                                '<li>Arroz integral</li>' +
+                                                '<li>Cebada</li>' +
+                                                '</ol>' +
+                                                 '<img class="img-fluid" src="asset/img/gato/blue.png">' +
+                                                '<input type="hidden" name="eligenuevo" id="eligenuevo" value="' + food + '">' +
+                                                '</div></div>';
+                                        $("#show_food_final").append(card);     // Append new elements                        
+                                        break;
+
+                                    default:
+
+                                        break;
                                 }
                             }
+
+                            /*function show_food_final(p) {
+                             food = p.value;
+                             if (food) {
+                             console.log(food);
+                             var txt1 = '<img class="img-fluid" src="asset/img/gato/R' + food + '.JPG">';// Create text with HTML
+                             var txt2 = '<input type="hidden" name="eligenuevo" id="eligenuevo" value="' + food + '">';
+                             $("#show_food_final").append(txt1, txt2);     // Append new elements
+                             nextPrev(1);
+                             }
+                             }*/
         </script>
         <script src="js/jquery3.3.1.min.js"></script>
         <script src="js/bootstrap4.0.0.min.js"></script>
