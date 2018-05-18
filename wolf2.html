@@ -2,9 +2,6 @@
 <html lang="es">
     <head>
         <meta charset="utf-8">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link rel="apple-touch-icon" sizes="57x57" href="asset/img/favicon/apple-icon-57x57.png">
@@ -40,17 +37,17 @@
             <form id="regForm" data-toggle="validator" class="shake">
                 <input type="hidden" value="Perro" name="Mascota" id="Mascota">
                 <!--h1>Encuesta Mascota</h1-->
-				<!--h5>¿Dónde se realiza tu encuesta?</h5>
-                    <select oninput="this.className = ''" name="lugar" id="lugar" required>
-                        <option value="+Kota">+Kota</option>
-                        <option value="Petco">Petco</option>
-                        <option value="Parque">Parque</option>
-                    </select-->
+                <!--h5>¿Dónde se realiza tu encuesta?</h5>
+    <select oninput="this.className = ''" name="lugar" id="lugar" required>
+        <option value="+Kota">+Kota</option>
+        <option value="Petco">Petco</option>
+        <option value="Parque">Parque</option>
+    </select-->
                 <!-- One "tab" for each step in the form: -->
-                <!--div class="tab">
+                <div class="tab">
                     <h5>Nombre de la mascota</h5>
                     <p><input oninput="this.className = ''" name="nombre_mascota" id="nombre_mascota"></p>
-                    
+
                     <h5>Tamaño de la mascota</h5>
                     <select oninput="this.className = ''" name="tamano" id="tamano" required>
                         <option value="Chica">Chica</option>
@@ -75,15 +72,44 @@
                     <p><input type="text" maxlength="60" placeholder="" oninput="this.className = ''" name="nombre_padre" id="nombre_padre"></p>
 
                     <h5>Email</h5>
-                    <p><input placeholder="E-mail..." oninput="this.className = ''" name="email" id="email"></p>
+                    <p><textarea  class="form-control" rows="1" placeholder="E-mail..."  name="email" id="email"></textarea></p>
 
                     <h5>Cord</h5>
                     <p id="demo"></p>
                     <div id="cords"></div>
 
-                </div-->
+                </div>
                 <div class="tab">
-                    <h5>De las siguientes marcas ¿Con cuál alimentas a tu Perro?</h5>   
+                    <h5>De las siguientes listas de ingredientes ¿Cuál le darías a tu Perro?</h5> 
+                    <input type="hidden" id="chekMarca" name="chekMarca">
+                    <div class="row"> 
+                        <div class="col">
+                            <label><input type="radio" name="marca" id="marca" value="Dog Chow" onclick="showmarca(this);" required/><img src="asset/img/pan4dog/opciones/op1.png" class="img-fluid"></label>
+                        </div>
+                        <div class="col">
+                            <label><input type="radio" name="marca" id="marca " value="Blue Buffalo" onclick="showmarca(this);" required/><img src="asset/img/pan4dog/opciones/op2.png" class="img-fluid"></label>
+                        </div>
+                        <div class="col"> 
+                            <label><input type="radio" name="marca" id="marca" value="Royal Canin" onclick="showmarca(this);" required/><img src="asset/img/pan4dog/opciones/op3.png" class="img-fluid"></label>
+                        </div>
+                    </div>
+                </div>					
+                <div class="tab">
+                    <h5>¿Desea comparar su marca con Blue Buffalo?</h5><br>
+                    <div class="row">
+                        <div class="col">
+                            <div id="show_food_selected_by_client"></div>
+                        </div>
+                    </div><br>
+                    <div style="overflow:auto;">
+                        <div style="float:right;">
+                            <button type="submit" id="comparar" onclick="refreshpage();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button><br><br>
+                        </div>
+                    </div>
+
+                </div>
+                <!--div class="tab">
+                    <h5>De las siguientes marcas ¿Con cuál alimentas a tu Perro?</h5> continuar  
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary" name="marca" id="marca" value="Pedigree" onclick="showmarca(this);">Pedigree</button> 
                         <button type="button" class="btn btn-secondary" name="marca" id="marca" value="Beneful" onclick="showmarca(this);">Beneful</button> 
@@ -102,55 +128,75 @@
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary" name="marca" id="marca" value="Natural Gourmet" onclick="showmarca(this);">Natural Gourmet</button>
                     </div><br> <br>
-                </div>
+                </div-->
                 <!--div class="tab">
-                    <h5>De las siguientes marcas ¿Con cuál alimentas a tu Perro?</h5>   
                     <div class="row">
-                        <div class="col"><label><input type="radio" name="marca" id="marca" value="Pedigree" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/perro/CBPedigree.JPG"></label></div>
-                        <div class="col"><label><input type="radio" name="marca" id="marca" value="Beneful" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/perro/CBBeneful.JPG"></label></div>
-                        <div class="col"><label><input type="radio" name="marca" id="marca" value="DogChow" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/perro/CBDogChow.JPG"></label></div>
+                        <div class="col"><label><input type="radio" name="marca" id="marca" value="Whiskas" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBWhiskas.JPG"></label></div>
+                        <div class="col"><label><input type="radio" name="marca" id="marca" value="CatChow" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBCatChow.JPG"></label></div>
+                        <div class="col"><label><input type="radio" name="marca" id="marca" value="Proplan" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBProplan.JPG"></label></div>
                     </div>
                     <div class="row">
-                        <div class="col"><label><input type="radio" name="marca" id="marca" value="Royal Canin" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/perro/CBRoyal Canin.JPG"></label></div>
-                        <div class="col"><label><input type="radio" name="marca" id="marca" value="Hill's" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/perro/CBHill's.JPG"></label></div>
-                        <div class="col"><label><input type="radio" name="marca" id="marca" value="Eukanuba" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/perro/CBEukanuba.JPG"></label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col"><label><input type="radio" name="marca" id="marca" value="Tier" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/perro/CBTier.JPG"></label></div>
-                        <div class="col"><label><input type="radio" name="marca" id="marca" value="Proplan" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/perro/CBProplan.JPG"></label></div>
-                        <div class="col"><label><input type="radio" name="marca" id="marca" value="Nupec" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/perro/CBNupec.JPG"></label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col"><label><input type="radio" name="marca" id="marca" value="Natural Gourmet" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/perro/CBNatural Gourmet.JPG"></label></div>
-                        <div class="col"> &nbsp;&nbsp;&nbsp;&nbsp;</div>
-                        <div class="col"> &nbsp;&nbsp;&nbsp;&nbsp;</div>
+                        <div class="col"><label><input type="radio" name="marca" id="marca" value="Royal Canin" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBRoyal Canin.JPG"></label></div>
+                        <div class="col"><label><input type="radio" name="marca" id="marca" value="Hill's" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBHill's.JPG"></label></div>
+                        <div class="col"><label><input type="radio" name="marca" id="marca" value="Nupec" onclick="showmarca(this);"/><img class="img-fluid" src="asset/img/gato/CBNupec.JPG"></label></div>
                     </div>
                 </div-->
                 <!--div class="tab">
-                    <h5>De las siguientes marcas ¿Con cuál alimentas a tu Perro?</h5>                      
+                    <h5>De las siguientes marcas ¿Con cuál alimentas a tu Gato?</h5>                      
                     <p>
                         <select onchange="showmarca(this);" oninput="this.className = ''" name="marca" id="marca" required>
                             <option></option>
-                            <option value="Pedigree">Pedigree</option>
-                            <option value="Beneful">Beneful</option>
-                            <option value="DogChow">DogChow</option>
+                            <option value="Whiskas">Whiskas</option>
+                            <option value="CatChow">CatChow</option>
+                            <option value="Proplan">Proplan</option>
                             <option value="Royal Canin">Royal Canin</option>
                             <option value="Hill's">Hill's</option>
-                            <option value="Eukanuba">Eukanuba</option>
-                            <option value="Tier">Tier</option>
-                            <option value="Proplan">Proplan</option>
                             <option value="Nupec">Nupec</option>
-                            <option value="Natural Gourmet">Natural Gourmet</option>
                         </select>
                     </p>
                 </div-->
                 <div class="tab">
-                    <h5>De las siguientes listas de ingredientes ¿Cuál le darías a tu Perro?</h5>  
-                    <div id="elige" class="row"></div>
+                    <h5>De las siguientes marcas ¿Con cuál alimentas a tu Perro?</h5>  
+                    <input type="hidden" id="chekclienteSelecciono" name="chekclienteSelecciono">
+                    <div class="row">
+                        <div class="col"><label><input type="radio" name="clienteSelecciono" id="clienteSelecciono" value="Pedigree" onclick="show_food_final(this);"/><img class="img-fluid" src="asset/img/pan5dog/Pedigree.png"></label></div>
+                        <div class="col"><label><input type="radio" name="clienteSelecciono" id="clienteSelecciono" value="Beneful" onclick="show_food_final(this);"/><img class="img-fluid" src="asset/img/pan5dog/Beneful.png"></label></div>
+                        <div class="col"><label><input type="radio" name="clienteSelecciono" id="clienteSelecciono" value="DogChow" onclick="show_food_final(this);"/><img class="img-fluid" src="asset/img/pan5dog/DogChow.png"></label></div>
+                    </div>
+                    <div class="row">
+                        <div class="col"><label><input type="radio" name="clienteSelecciono" id="clienteSelecciono" value="Nupec" onclick="show_food_final(this);"/><img class="img-fluid" src="asset/img/pan5dog/Nupec.png"></label></div>
+                        <div class="col"><label><input type="radio" name="clienteSelecciono" id="clienteSelecciono" value="Hill's" onclick="show_food_final(this);"/><img class="img-fluid" src="asset/img/pan5dog/Hill's.png"></label></div>
+                        <div class="col"><label><input type="radio" name="clienteSelecciono" id="clienteSelecciono" value="Eukanuba" onclick="show_food_final(this);"/><img class="img-fluid" src="asset/img/pan5dog/Eukanuba.png"></label></div>
+                    </div>
+                    <div class="row">
+                        <div class="col"><label><input type="radio" name="clienteSelecciono" id="clienteSelecciono" value="Tier" onclick="show_food_final(this);"/><img class="img-fluid" src="asset/img/pan5dog/Tier.png"></label></div>
+                        <div class="col"><label><input type="radio" name="clienteSelecciono" id="clienteSelecciono" value="Proplan" onclick="show_food_final(this);"/><img class="img-fluid" src="asset/img/pan5dog/Proplan.png"></label></div>
+                        <div class="col"><label><input type="radio" name="clienteSelecciono" id="clienteSelecciono" value="Royal Canin" onclick="show_food_final(this);"/><img class="img-fluid" src="asset/img/pan5dog/Royal Canin.png"></label></div>
+                    </div>
+                    <div class="row">
+                        <div class="col"><label></label></div>
+                        <div class="col"><label><input type="radio" name="clienteSelecciono" id="clienteSelecciono" value="Natural Gourmet" onclick="show_food_final(this);"/><img class="img-fluid" src="asset/img/pan5dog/Natural Gourmet.png"></label></div>
+                        <div class="col"><label></label></div>
+                        <!--div class="col"><label><input type="radio" name="clienteSelecciono" id="clienteSelecciono" value="Blue Buffalo" onclick="show_food_final(this);"/><img class="img-fluid" src="asset/img/pan5dog/Blue Buffalo.png"></label></div-->
+                    </div>
                 </div>
+
+                <!--h5>De las siguientes listas de ingredientes ¿Cuál le darías a tu Perro?</h5-->  
+                <div id="elige" class="row"></div>
+
                 <div class="tab">
-                    <h5>Usted eligió</h5> 
-                    <div id="show_food_final"></div>
+                    <h5>Usted eligió</h5>
+                    <div class="row">
+                        <div class="col">
+                            <div id="show_food_final"></div>
+                        </div>
+                        <div class="col">
+                            <img src="asset/img/pan4dog/Blue Buffalo.PNG" class="img-fluid">
+                        </div>
+                        <div class="col">
+                            <img src="asset/img/perro/blue.png" class="img-fluid">
+                        </div>
+                    </div><br>
                 </div>
                 <div style="overflow:auto;">
                     <div style="float:right;">
@@ -163,6 +209,7 @@
                 </div>
                 <!-- Circles which indicates the steps of the form: -->
                 <div style="text-align:center;margin-top:40px;">
+                    <span class="step"></span>
                     <span class="step"></span>
                     <span class="step"></span>
                     <span class="step"></span>
@@ -196,11 +243,13 @@
                 </div>
             </div>
         </div>
+
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="asset/js/jquery-3.2.1.slim.min.js"></script>
         <script src="asset/js/popper.min.js"></script>
         <script src="asset/js/bootstrap.min.js"></script>
+
         <!-- JQuery Export datatable csv,excel pdf -->
         <script src="asset/js/jquery-1.12.4.js"></script>
         <script src="asset/js/jquery.dataTables.min.js"></script>
@@ -209,7 +258,13 @@
         <script src="asset/js/pdfmake.min.js"></script>
         <script src="asset/js/vfs_fonts.js"></script>
         <script src="asset/js/buttons.html5.min.js"></script>
+
         <script>
+                            function refreshpage() {
+                                setTimeout(function () {
+                                    location.href = "index.html";
+                                }, 1000); //delay is in milliseconds 
+                            }
                             var currentTab = 0; // Current tab is set to be the first tab (0)
                             showTab(currentTab); // Display the crurrent tab
 
@@ -228,7 +283,7 @@
                                     document.getElementById("nextBtn").style.display = "none";
                                     $("#divsubmit").prepend('<button type="submit" id="form-submit">Enviar Respuestas</button>');
                                 } else {
-                                    document.getElementById("nextBtn").innerHTML = "Next";
+                                    document.getElementById("nextBtn").innerHTML = "Continuar";
                                 }
                                 //... and run a function that will display the correct step indicator:
                                 fixStepIndicator(n)
@@ -236,6 +291,8 @@
 
                             function nextPrev(n) {
 
+                                var tr = validateForm();
+                                console.log(tr);
                                 // This function will figure out which tab to display
                                 var x = document.getElementsByClassName("tab");
                                 // Exit the function if any field in the current tab is invalid:
@@ -282,14 +339,15 @@
                                     }
                                 }
 
+
                                 radio = x[currentTab].getElementsByTagName("radio");
                                 // A loop that checks every input field in the current tab:
                                 for (i = 0; i < radio.length; i++) {
+                                    console.log("radio invalid");
                                     // If a field is empty...
                                     if (radio[i].value == "") {
                                         // add an "invalid" class to the field:
                                         radio[i].className += " invalid";
-                                        // and set the current valid status to false
                                         valid = false;
                                     }
                                 }
@@ -297,6 +355,8 @@
                                 // If the valid status is true, mark the step as finished and valid:
                                 if (valid) {
                                     document.getElementsByClassName("step")[currentTab].className += " finish";
+                                } else {
+                                    console.log("invalid");
                                 }
                                 return valid; // return the valid status
                             }
@@ -316,21 +376,112 @@
         <script type="text/javascript" src="js/regForm.js"></script>
         <script>
                             function showmarca(p) {
+                                $("#nextBtn").attr("value", "Sí");
                                 marca = p.value;
                                 if (marca) {
                                     console.log(marca);
-                                    var txt1 = '<div class="col"><label><input oninput="this.className = ' + "'" + "'" + '" type="radio" name="clienteSelecciono" id="clienteSelecciono" value="' + marca + '" onclick="show_food_final(this);"><img class="img-fluid" src="asset/img/perro/' + marca + '.JPG"></label></div>'; // Create text with HTML
-                                    var txt2 = '<div class="col"><label><input oninput="this.className = ' + "'" + "'" + '" type="radio" name="clienteSelecciono" id="clienteSelecciono" value="BlueBufalo"  onclick="show_food_final(this);"><img class="img-fluid" src="asset/img/perro/bluedog.png"></label></div>'; // Create text with jQuery
+                                    var txt1 = '<div class="col"><label><input oninput="this.className = ' + "'" + "'" + '" type="radio" name="clienteSelecciono" id="clienteSelecciono" value="' + marca + '" onclick="show_food_final(this);"/><img class="img-fluid" src="asset/img/perro/' + marca + '.JPG"></label></div>';              // Create text with HTML
+                                    var txt2 = '<div class="col"><label><input oninput="this.className = ' + "'" + "'" + '" type="radio" name="clienteSelecciono" id="clienteSelecciono" value="Blue Buffalo" onclick="show_food_final(this);"/><img class="img-fluid" src="asset/img/perro/bluedog.png"></label></div>';  // Create text with jQuery
                                     var txt3 = '<input type="hidden" name="mascotacome" id="mascotacome" value="' + marca + '">';
-                                    $("#elige").append(txt1, txt2, txt3); // Append new elements
-                                    nextPrev(1);
+                                    //chekMarca
+                                    /*PAra validar los radiobutton XD*/
+                                    /*chekMarca estavacio y no deja continuar hasta elejir una marca*/
+                                    $("#chekMarca").val("Dolly Duck");
+                                    $("#elige").append(txt3);     // Append new elements
+                                    //damos next automaticamente
+                                    //nextPrev(1);
+                                }
+                                food = p.value;
+
+                                switch (food) {
+                                    case "Dog Chow":
+                                        var card = '<img src="asset/img/pan4dog/opciones_n/op1.jpg" class="img-fluid">';
+                                        $("#show_food_selected_by_client").append(card);     // Append new elements       
+                                        nextPrev(1);
+                                        break;
+                                    case "Blue Buffalo":
+                                        var card = '<img src="asset/img/pan4dog/opciones_n/op2.jpg" class="img-fluid">';
+                                        $("#show_food_selected_by_client").append(card);     // Append new elements     
+                                        nextPrev(1);
+                                        break;
+                                    case "Royal Canin":
+                                        var card = '<img src="asset/img/pan4dog/opciones_n/op3.jpg" class="img-fluid">';
+                                        $("#show_food_selected_by_client").append(card);     // Append new elements      
+                                        nextPrev(1);
+                                        break;
+                                    default:
+
+                                        break;
                                 }
                             }
+
                             function show_food_final(p) {
+                                //chekclienteSelecciono
+                                /*PAra validar los radiobutton XD*/
+                                /*chekclienteSelecciono estavacio y no deja continuar hasta elejir una marca*/
+                                $("#chekclienteSelecciono").val("Dolly Duck");
                                 food = p.value;
                                 switch (food) {
                                     case "Pedigree":
-                                        var card = '<div class="card"><div class="card-header">Header</div><div class="card-body">Content</div> <div class="card-footer">Footer</div></div>';
+                                        var card = '<img src="asset/img/perro/jpg/Pedigree.jpg" class="img-fluid">' +
+                                                   '<input type="hidden" name="eligenuevo" id="eligenuevo" value="' + food + '">';
+
+                                        $("#show_food_final").append(card);     // Append new elements    
+                                        nextPrev(1);
+                                        break;
+                                    case "Beneful":
+                                        var card = '<img src="asset/img/perro/jpg/Beneful.jpg" class="img-fluid">' +
+                                                   '<input type="hidden" name="eligenuevo" id="eligenuevo" value="' + food + '">';
+                                        $("#show_food_final").append(card);     // Append new elements       
+                                        nextPrev(1);
+                                        break;
+                                    case "DogChow":
+                                        var card = '<img src="asset/img/perro/jpg/DogChow.jpg" class="img-fluid">' +
+                                                   '<input type="hidden" name="eligenuevo" id="eligenuevo" value="' + food + '">';
+                                        $("#show_food_final").append(card);     // Append new elements       
+                                        nextPrev(1);
+                                        break;
+                                    case "Royal Canin":
+                                        var card = '<img src="asset/img/perro/jpg/Royal Canin.jpg" class="img-fluid">' +
+                                                   '<input type="hidden" name="eligenuevo" id="eligenuevo" value="' + food + '">';
+                                        $("#show_food_final").append(card);     // Append new elements     
+                                        nextPrev(1);
+                                        break;
+                                    case "Hill's":
+                                        var card = '<img src="asset/img/perro/jpg/Hills.jpg" class="img-fluid">' +
+                                                   '<input type="hidden" name="eligenuevo" id="eligenuevo" value="' + food + '">';
+                                        $("#show_food_final").append(card);     // Append new elements    
+                                        nextPrev(1);
+                                        break;
+                                    case "Eukanuba":
+                                        var card = '<img src="asset/img/perro/jpg/Eukanuba.jpg" class="img-fluid">' +
+                                                   '<input type="hidden" name="eligenuevo" id="eligenuevo" value="' + food + '">';
+                                        $("#show_food_final").append(card);     // Append new elements     
+                                        nextPrev(1);
+                                        break;
+                                    case "Tier":
+                                        var card = '<img src="asset/img/perro/jpg/Tier.jpg" class="img-fluid">' +
+                                                   '<input type="hidden" name="eligenuevo" id="eligenuevo" value="' + food + '">';
+                                        $("#show_food_final").append(card);     // Append new elements      
+                                        nextPrev(1);
+                                        break;
+                                    case "Proplan":
+                                        var card = '<img src="asset/img/perro/jpg/Proplan.jpg" class="img-fluid">' +
+                                                   '<input type="hidden" name="eligenuevo" id="eligenuevo" value="' + food + '">';
+                                        $("#show_food_final").append(card);     // Append new elements    
+                                        nextPrev(1);
+                                        break;
+                                    case "Nupec":
+                                        var card = '<img src="asset/img/perro/jpg/Nupec.jpg" class="img-fluid">' +
+                                                   '<input type="hidden" name="eligenuevo" id="eligenuevo" value="' + food + '">';
+                                        $("#show_food_final").append(card);     // Append new elements   
+                                        nextPrev(1);
+                                        break;
+                                    case "Natural Gourmet":
+                                        var card = '<img src="asset/img/perro/jpg/Natural Gourmet.jpg" class="img-fluid">' +
+                                                   '<input type="hidden" name="eligenuevo" id="eligenuevo" value="' + food + '">';
+                                        $("#show_food_final").append(card);     // Append new elements    
+                                        nextPrev(1);
                                         break;
                                     default:
 
@@ -371,7 +522,9 @@
                             function showPosition(position) {
                                 x.innerHTML = "Latitude: " + position.coords.latitude +
                                         "<br>Longitude: " + position.coords.longitude;
+
                                 $("#cords").append('<input type="hidden" value="' + position.coords.latitude + '" id="lat" name="lat"><input type="hidden" value="' + position.coords.longitude + '" id="lon" name="lon">');
+
                             }
         </script>
         <!--END Modal terminos y condiciones -->

@@ -1,147 +1,159 @@
-            * {
-                box-sizing: border-box;
-            }
+* {
+    box-sizing: border-box;
+}
 
-            body {
-                background: #fff0cb;
-            }
-		.card {
-			position: relative;
-			display: -webkit-box;
-			display: -ms-flexbox;
-			display: flex;
-			-webkit-box-orient: vertical;
-			-webkit-box-direction: normal;
-			-ms-flex-direction: column;
-			flex-direction: column;
-			min-width: 0;
-			word-wrap: break-word;
-			background-color: #042b4e;
-			background-clip: border-box;
-			border: 1px solid rgba(0,0,0,.125);
-			border-radius: .25rem;
-		}
-            #regForm {
-                font-family: Raleway;
-                background-color: rgb(4, 43, 78) !important;
-                margin: 3em auto;
-                padding: 40px;
-                /* width: 70%; */
-                min-width: 300px;
-                min-height: 600px;
-                color: #fff0cb;
-            }
-			.btn-primary {
-			color: #fff;
-			background-color: #61bad8;
-			border-color: #61bad8;
-			}
+body {
+    background: #fff0cb;
+}
+.card-body{
+    background-color: #fff0cb;
+    color: #042b4e;
+    border-radius: 25px;
+}
+.card-header{
+    background-color: white;
+    color: #042b4e;
+    border-radius: 15px !important;
 
-            h1 {
-                text-align: center;  
-            }
+}
 
-            input {
-                padding: 10px;
-                width: 100%;
-                font-size: 17px;
-                font-family: Raleway;
-                border: 1px solid #aaaaaa;
-            }
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #042b4e;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+#regForm {
+    font-family: Raleway;
+    background-color: rgb(4, 43, 78) !important;
+    margin: 3em auto;
+    padding: 40px;
+    /* width: 70%; */
+    min-width: 300px;
+    min-height: 600px;
+    color: #fff0cb;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #61bad8;
+    border-color: #61bad8;
+}
 
-            /* Mark input boxes that gets an error on validation: */
-            input.invalid {
-                background-color: #ffdddd !important;
-            }
-            select.invalid {
-                background-color: #ffdddd !important;
-            }
-            radio.invalid {
-                background-color: #ffdddd !important;
-            }
+h1 {
+    text-align: center;  
+}
 
-            /* Hide all steps by default: */
-            .tab {
-                display: none;
-            }
+input {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+}
 
-            button {
-                background-color: #fff0cb;
-                color: #042b4e;
-                border: none;
-                padding: 10px 20px;
-                font-size: 17px;
-                font-family: Raleway;
-                cursor: pointer;
-            }
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+    background-color: #ffdddd !important;
+}
+select.invalid {
+    background-color: #ffdddd !important;
+}
+radio.invalid {
+    background-color: #ffdddd !important;
+}
 
-            button:hover {
-                opacity: 0.8;
-            }
+/* Hide all steps by default: */
+.tab {
+    display: none;
+}
 
-            #prevBtn {
-                background-color: #bbbbbb;
-            }
+button {
+    background-color: #fff0cb;
+    color: #042b4e;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway;
+    cursor: pointer;
+}
 
-            /* Make circles that indicate the steps of the form: */
-            .step {
-                height: 15px;
-                width: 15px;
-                margin: 0 2px;
-                background-color: #bbbbbb;
-                border: none;  
-                border-radius: 50%;
-                display: inline-block;
-                opacity: 0.5;
-            }
+button:hover {
+    opacity: 0.8;
+}
 
-            .step.active {
-                opacity: 1;
-            }
+#prevBtn {
+    background-color: #bbbbbb;
+}
 
-            /* Mark the steps that are finished and valid: */
-            .step.finish {
-                background-color: #0086ff;
-            }
+/* Make circles that indicate the steps of the form: */
+.step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;  
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+}
 
-            select {
-                padding: 10px;
-                width: 100%;
-                font-size: 17px;
-                font-family: Raleway;
-                border: 1px solid #aaaaaa;
-            }
-            .center {
-                margin: auto;
-                width: 60%;
-                padding: 10px;
-            }
+.step.active {
+    opacity: 1;
+}
 
-            table {
-                border-collapse: collapse;
-                border-spacing: 0;
-                width: 100%;
-                border: 1px solid #ddd;
-            }
+/* Mark the steps that are finished and valid: */
+.step.finish {
+    background-color: #0086ff;
+}
 
-            th, td {
-                text-align: left;
-                padding: 8px;
-            }
+select {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+}
+.center {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+}
 
-            tr:nth-child(even){background-color: #f2f2f2}
-            #logo{
-                background-color: rgb(255, 240, 203) !important;
-            }
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
 
-            label > input{ /* HIDE RADIO */
-                visibility: hidden; /* Makes input not-clickable */
-                position: absolute; /* Remove input from document flow */
-            }
-            label > input + img{ /* IMAGE STYLES */
-                cursor:pointer;
-                border:2px solid transparent;
-            }
-            label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
-                border:2px solid #f00;
-            }
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+#logo{
+    background-color: rgb(255, 240, 203) !important;
+}
+
+label > input{ /* HIDE RADIO */
+    visibility: hidden; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
+}
+label > input + img{ /* IMAGE STYLES */
+    cursor:pointer;
+    border:2px solid transparent;
+}
+label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+    border:2px solid #f00;
+}

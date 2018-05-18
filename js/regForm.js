@@ -2,7 +2,7 @@ $("#regForm").validator().on("submit", function (event) {
     if (event.isDefaultPrevented()) {
         // handle the invalid form...
         formError();
-        submitMSG(false, "Todos los campos son requeridos");
+        submitMSG(false, "Llene los campos que son requeridos");
     } else {
         // everything looks good!
         event.preventDefault();
@@ -26,6 +26,7 @@ function submitForm() {
     var email = $("#email").val();
     var mascotacome = $("#mascotacome").val();
     var eligenuevo = $("#eligenuevo").val();
+    var Comentarios = localStorage.getItem("Comentarios");
     var lat = $("#lat").val();
     var lon = $("#lon").val();
     var d = new Date();
@@ -40,6 +41,7 @@ function submitForm() {
     console.log("email " + email);
     console.log("mascotacome " + mascotacome);
     console.log("clienteSelecciono " + eligenuevo);
+    console.log("Comentarios " + Comentarios);
     console.log(d.toLocaleString("en-US"));
     
     //cracion del registro actual en JSON
@@ -56,6 +58,7 @@ function submitForm() {
             '"lon": "' + lon + '",' +
             '"marca": "' + mascotacome + '",' +
             '"clienteSelecciono": "' + eligenuevo + '",' +
+            '"Comentarios": "' + Comentarios + '",' +
             '"date": "' + d.toLocaleString("en-US") + '"' +
             '},';
     

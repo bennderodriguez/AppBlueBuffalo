@@ -43,10 +43,10 @@
                     <br>
                     <div class="row">
                         <div class="col">
-                            <a href="wolf.html"><button type="button" class="btn-block"><img src="asset/img/dog.png"></button></a>
+                            <a href="wolf2.html"><button type="button" class="btn-block"><img src="asset/img/dog.png"></button></a>
                         </div>
                         <div class="col">
-                            <a href="gato.html"><button type="button" class="btn-block"><img src="asset/img/cat.png"></button></a>
+                            <a href="cat2.html"><button type="button" class="btn-block"><img src="asset/img/cat.png"></button></a>
                         </div>
                     </div><br><br>
                     <div class="col">
@@ -95,6 +95,12 @@
                                 <label>Apellidos</label>
                                 <input type="text" class="form-control" id="app_enc" name="app_enc" required>
                             </div>
+							
+							<div class="form-group">
+							<label>Comentarios</label>
+							<textarea  class="form-control" rows="6" placeholder="¿Cómo estuvo tu día?"  name="Comentarios" id="Comentarios"></textarea><br><br>
+							</div>
+							
                         </div>
                         <!-- Modal footer -->
                         <div class="modal-footer">
@@ -119,27 +125,31 @@
 
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h4 class="modal-title">Respuestas:</h4>
+                        <h4 class="modal-title">Respuestas: </h4>
+                        <div id="msgSubmit" class="h3 text-center hidden"></div>
+                        <div class="clearfix"></div>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
-                    <form id="resultados_de_la_encuesta" action="http://eloquent.com.mx/PanelBlueBuffalo/recibe_respuestas.php" method="POST">
+                    <!--form action="http://eloquent.com.mx/PanelBlueBuffalo/recibe_respuestas.php" method="POST" role="form" id="resultados_de_la_encuesta" data-toggle="validator" class="shake"-->
+                    <form role="form" id="resultados_de_la_encuesta" data-toggle="validator" class="shake">
                         <!-- Modal body -->
                         <div class="modal-body">
                             <div class="form-group">
-                                <textarea class="form-control" rows="10" id="jsonRespuestas" name="jsonRespuestas"></textarea>
+                                <textarea  class="form-control" rows="10" id="jsonRespuestas" name="jsonRespuestas" required data-error="No hay respuestas por enviar"></textarea>
+                                <div class="help-block with-errors text-danger"></div>
                             </div>
                         </div>
                         <!-- Modal footer -->
                         <div class="modal-footer">
                             <div class="row">
                                 <div class="col">
-                                    <button type="button" class="btn btn-default" id="clear" onclick="return confirm('¿Esta seguro de Borrar Buffer? Las repsuestas no enviadas se eliminaran.')">
+                                    <button type="button" class="btn btn-default btn-block" id="clear" onclick="return confirm('¿Esta seguro de Borrar Buffer? Las repsuestas no enviadas se eliminaran.')">
                                         <i class="fa fa-fire"></i>
                                         Borrar Buffer
                                     </button>
                                 </div>
                                 <div class="col">
-                                    <button type="submit" class="btn btn-default">
+                                    <button type="submit" id="form-submit" class="btn btn-success btn-block">
                                         <i class="fa fa-cloud-upload"></i>
                                         Enviar respuestas
                                     </button>
@@ -168,64 +178,74 @@
 
         <script  type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
         <script type="text/javascript" src="js/validator.min.js"></script>
-        <script type="text/javascript" src="js/regForm.js"></script>
+        <script type="text/javascript" src="js/form-scripts.js"></script>
         <script>
-            //imprimo en el div #result el nombre del encuestador
-            document.getElementById("result").innerHTML = localStorage.getItem("nombre_enc");
+                                        //imprimo en el div #result el nombre del encuestador
+										$("#nombre_enc").val(localStorage.getItem("onlyName"));
+										$("#app_enc").val(localStorage.getItem("onlyApp"));
+                                        document.getElementById("result").innerHTML = localStorage.getItem("nombre_enc");
+                                        document.getElementById("Comentarios").innerHTML = localStorage.getItem("Comentarios");
 
-            /**
-             * cuando le dan clic a la ventana modal de erespuesta setea en el
-             * text area #jsonRespuestas el json de las respuestas
-             */
-            $("#modalResp").click(function () {
-                /**
-                 * si localStorage de respuesta JSON != null
-                 */
-                if (localStorage.getItem("json")) {
-                    //Concatenamos estructura de cabeceras JSON
-                    var str = '{"data": [' + localStorage.getItem("json") + ']}';
-                    //Reemplazamos null
-                    var res = str.replace("[null{", "[{");
-                    //reemplazo la ultmima coma del JSON
-                    var res2 = res.replace(",]}", "]}");
-                    //setep el resultado en el textArea #jsonRespuestas
-                    $("#jsonRespuestas").val(res2);
-                }
-            });
-            /**
-             * cuando dan clic en clear borra el local storage
-             */
-            $("#clear").click(function () {
-                localStorage.clear();
-            });
-            /**
-             * Cuando guardan datos del form #datos_encuestador
-             * 
-             */
-            $("#datos_encuestador").validator().on("submit", function (event) {
-                if (event.isDefaultPrevented()) {
-                    // handle the invalid form...
-                    console.log("faltan datos");
-                } else {
-                    // everything looks good!
-                    //event.preventDefault();
-                    console.log("submit");
-                    var nombre_enc = $("#nombre_enc").val();
-                    var app_enc = $("#app_enc").val();
+                                        /**
+                                         * cuando le dan clic a la ventana modal de erespuesta setea en el
+                                         * text area #jsonRespuestas el json de las respuestas
+                                         */
+                                        $("#modalResp").click(function () {
+                                            /**
+                                             * si localStorage de respuesta JSON != null
+                                             */
+                                            if (localStorage.getItem("json")) {
+                                                //Concatenamos estructura de cabeceras JSON
+                                                var str = '{"data": [' + localStorage.getItem("json") + ']}';
+                                                //Reemplazamos null
+                                                var res = str.replace("[null{", "[{");
+                                                //reemplazo la ultmima coma del JSON
+                                                var res2 = res.replace(",]}", "]}");
+                                                //setep el resultado en el textArea #jsonRespuestas
+                                                $("#jsonRespuestas").val(res2);
+                                            }
+                                        });
+                                        /**
+                                         * cuando dan clic en clear borra el local storage
+                                         */
+                                        $("#clear").click(function () {
+                                            localStorage.clear();
+                                        });
+                                        /**
+                                         * Cuando guardan datos del form #datos_encuestador
+                                         * 
+                                         */
+                                        $("#datos_encuestador").validator().on("submit", function (event) {
+                                            if (event.isDefaultPrevented()) {
+                                                // handle the invalid form...
+                                                console.log("faltan datos");
+												document.getElementById("result").innerHTML = "Faltan datos del encuestador";
+                                            } else {
+                                                // everything looks good!
+                                                //event.preventDefault();
+                                                console.log("submit");
+                                                var nombre_enc = $("#nombre_enc").val();
+                                                var app_enc = $("#app_enc").val();
+												var Comentarios = $("#Comentarios").val();
 
-                    // Check browser support
-                    //Guardamos en localStorage el nombre del encuestador
-                    if (typeof (Storage) !== "undefined") {
-                        // Store
-                        localStorage.setItem("nombre_enc", nombre_enc + " " + app_enc);
-                        // Retrieve
-                        document.getElementById("result").innerHTML = localStorage.getItem("nombre_enc");
-                    } else {
-                        document.getElementById("result").innerHTML = "Sorry, your Abroid does not support Web Storage...";
-                    }
-                    console.log("Tu nombre es: " + nombre_enc + " " + app_enc);
-                }
-            });
+                                                // Check browser support
+                                                //Guardamos en localStorage el nombre del encuestador
+                                                if (typeof (Storage) !== "undefined") {
+                                                    // Store
+                                                    localStorage.setItem("nombre_enc", nombre_enc + " " + app_enc);
+													//Store Comentarios,name,app por separado
+                                                    localStorage.setItem("Comentarios", Comentarios);
+                                                    localStorage.setItem("onlyName", nombre_enc);
+                                                    localStorage.setItem("onlyApp", app_enc);
+													
+                                                    // Retrieve
+                                                    document.getElementById("result").innerHTML = localStorage.getItem("nombre_enc");
+                                                } else {
+                                                    document.getElementById("result").innerHTML = "Sorry, your Abroid does not support Web Storage...";
+                                                }
+                                                console.log("Tu nombre es: " + nombre_enc + " " + app_enc);
+                                            }
+                                        });
         </script>
     </body>
 </html>
